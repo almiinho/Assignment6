@@ -1,20 +1,26 @@
 public class Main {
     public static void main(String[] args) {
-        MyGraph<Integer> temp = new MyGraph<>();
-        temp.addVertex(1);
-        temp.addVertex(3);
-        temp.addVertex(2);
-        temp.addVertex(4);
-        temp.addEdge(1, 3);
-        temp.addEdge(1, 2);
-        temp.addEdge(2, 3);
-        temp.addEdge(3, 4);
-        temp.printGraph();
-        temp.removeEdge(2,3);
-        temp.printGraph();
-        System.out.println(temp.hasEdge(1,3));
-        System.out.println(temp.hasEdge(1,2));
-        System.out.println(temp.getNeighbors(1));
-        temp.BFS(1);
+        MyWeightedGraph graph = new MyWeightedGraph(5);
+        MyVertex vertex0 = new MyVertex(0);
+        MyVertex vertex1 = new MyVertex(1);
+        MyVertex vertex2 = new MyVertex(2);
+        MyVertex vertex3 = new MyVertex(3);
+        MyVertex vertex4 = new MyVertex(4);
+
+        graph.addEdge(vertex0, vertex1, 2);
+        graph.addEdge(vertex0, vertex2, 6);
+        graph.addEdge(vertex1, vertex3, 5);
+        graph.addEdge(vertex2, vertex3, 12);
+        graph.addEdge(vertex2, vertex4, 8);
+        graph.addEdge(vertex3, vertex4, 10);
+
+        MyBFS BFS = new MyBFS(graph);
+        MyDijkstraSearch dijkstra = new MyDijkstraSearch(graph);
+
+        System.out.println("BFS traversal:");
+        BFS.BFS(vertex0);
+
+        System.out.println("\nDijkstra's Algorithm:");
+        dijkstra.dijkstra(vertex4);
     }
 }
